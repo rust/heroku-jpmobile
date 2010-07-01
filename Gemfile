@@ -6,15 +6,8 @@ gem 'rails', '3.0.0.beta4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
-group :production do
-  gem 'pg'
-end
-group :test do
-  gem 'ruby-mysql', :require => 'mysql'
-end
-group :development do
-  gem 'ruby-mysql', :require => 'mysql'
-end
+gem 'pg', :group => :production
+gem 'ruby-mysql', :require => 'mysql', :group => [:test, :development]
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,4 +29,4 @@ end
 # group :test do
 #   gem 'webrat'
 # end
-require 'geokit'
+gem 'geokit'
