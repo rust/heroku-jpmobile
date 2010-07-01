@@ -6,7 +6,15 @@ gem 'rails', '3.0.0.beta4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'ruby-mysql', :require => 'mysql'
+group :production do
+  gem 'pg'
+end
+group :test do
+  gem 'ruby-mysql', :require => 'mysql'
+end
+group :development do
+  gem 'ruby-mysql', :require => 'mysql'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
