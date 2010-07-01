@@ -28,6 +28,6 @@ gem 'hpricot'
 # Bundle gems for certain environments:
 gem 'rspec', :group => :test
 group :test do
-  gem "rspec", "2.0.0.beta.14"
-  gem "rspec-rails", "2.0.0.beta.14.1"
+  gem "rspec", ">= 2.0.0.beta.14"
+  gem "rspec-rails", ">= 2.0.0.beta.14.1"
 end
