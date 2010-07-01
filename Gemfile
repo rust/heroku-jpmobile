@@ -36,3 +36,4 @@ end
 # group :test do
 #   gem 'webrat'
 # end
+require 'geokit'
