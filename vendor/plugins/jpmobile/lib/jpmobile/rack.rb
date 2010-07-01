@@ -12,5 +12,5 @@ end
 if Object.const_defined?(:Rails)
   Rails::Application.config.middleware.insert_before('ActionDispatch::ParamsParser', Jpmobile::Rack::MobileCarrier)
   Rails::Application.config.middleware.insert_before('ActionDispatch::ParamsParser', Jpmobile::Rack::ParamsFilter)
-  Rails::Application.config.middleware.insert_before('ActionDispatch::ParamsParser', Jpmobile::Rack::Filter)
+#  Rails::Application.config.middleware.insert_before('ActionDispatch::ParamsParser', Jpmobile::Rack::Filter)
 end
