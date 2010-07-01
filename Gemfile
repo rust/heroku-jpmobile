@@ -9,6 +9,8 @@ gem 'rails', '3.0.0.beta4'
 gem 'pg', :group => :production
 gem 'ruby-mysql', :require => 'mysql', :group => [:test, :development]
 
+gem 'geokit'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -29,4 +31,3 @@ gem 'ruby-mysql', :require => 'mysql', :group => [:test, :development]
 # group :test do
 #   gem 'webrat'
 # end
-gem 'geokit'
