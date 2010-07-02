@@ -28,13 +28,13 @@ module Jpmobile
           body = response.body.join("\n")
           body, charset = mobile.to_external(body, content_type, charset)
 
-          if content_type and charset
-            if response.respond_to?(:content_type=)
-              response.content_type    = "#{content_type}; charset=#{charset}"
-            else
-              response['Content-Type'] = "#{content_type}; charset=#{charset}"
-            end
-          end
+          # if content_type and charset
+          #   if response.respond_to?(:content_type=)
+          #     response.content_type    = "#{content_type}; charset=#{charset}"
+          #   else
+          #     response['Content-Type'] = "#{content_type}; charset=#{charset}"
+          #   end
+          # end
 
           # body = [body] if body.kind_of?(String)
 
