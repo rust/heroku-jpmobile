@@ -12,14 +12,14 @@ module Jpmobile
         if env['rack.jpmobile']
           # フォームのパラメータ
           if env['REQUEST_METHOD'] == 'POST'
-            form_params = env['rack.jpmobile'].to_internal(URI.decode(env['rack.input'].read))
+puts            form_params = env['rack.jpmobile'].to_internal(URI.decode(env['rack.input'].read))
             env['rack.input'] = StringIO.new(URI.encode(form_params))
           end
 
           # URI Query
           query_string = URI.decode(env['QUERY_STRING'])
           unless query_string == env['QUERY_STRING']
-            env['QUERY_STRING'] = URI.encode(env['rack.jpmobile'].to_internal(query_string))
+puts            env['QUERY_STRING'] = URI.encode(env['rack.jpmobile'].to_internal(query_string))
           end
         end
 
