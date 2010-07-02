@@ -28,9 +28,6 @@ class GuestbooksController < ApplicationController
   # GET /guestbooks/new
   # GET /guestbooks/new.xml
   def new
-require 'pp'
-pp session[:t]
-pp Rails::Application.config.session_options
     @guestbook = Guestbook.new
 
     respond_to do |format|
