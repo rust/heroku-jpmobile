@@ -8,11 +8,8 @@ module ParamsOverCookie
       # cookie よりも params を先に見るパッチ
       def load_session_with_jpmobile(env)
         request = Rack::Request.new(env)
-        unless @cookie_only
-          sid = request.params[@key]
-        end
-        sid ||= request.cookies[@key]
-
+        sid   = request.cookies[@key]
+        sid ||= request.params[@key] unless @cookie_only
         sid, session = get_session(env, sid)
         [sid, session]
       end
@@ -134,7 +131,10 @@ module Jpmobile::TransSid #:nodoc:
   private
   # session_keyを返す。
   def session_key
-    Rails::Application::config.session_options.merge(request.session_options || {})[:key]
+    unless key = Rails::Application::config.session_options.merge(request.session_options || {})[:key]
+      key = ActionDispatch::Session::AbstractStore::DEFAULT_OPTIONS[:key]
+    end
+    key
   end
   # session_idを返す
   def jpmobile_session_id

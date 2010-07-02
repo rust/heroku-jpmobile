@@ -74,15 +74,14 @@ namespace :test do
       File.open(config_path, 'w') do |file|
         file.write <<-END
 Rails.application.config.session_store :active_record_store, :key => '_session_id'
+Rails.application.config.session_options = {:cookie_only => false}
 END
       end
 
       # run tests in rails
       cd rails_root
       ruby "-S rake db:migrate test"
-      ruby "-S rake spec --trace"
-      # ruby "-S rspec -b -c -e 'Jpmobile::Helpers docomo で get_position_link_to が正常に表示されること' spec/requests/helpers_spec.rb"
-      # ruby "-S rspec -b -c -e 'jpmobile integration spec FilterController Vodafone V903T からのアクセス は半角カナのparamsを変換しないこと' spec/requests/filter_spec.rb"
+      ruby "-S rake spec"
 
       cd relative_root
     end
