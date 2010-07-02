@@ -1,5 +1,5 @@
 class GuestbooksController < ApplicationController
-#  trans_sid :mobile
+  trans_sid :mobile
 
   # GET /guestbooks
   # GET /guestbooks.xml

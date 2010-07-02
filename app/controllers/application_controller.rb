@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
 
-  after_filter :convert_to_sjis
+#  after_filter :convert_to_sjis
 
   def convert_to_sjis
     body = response.body
