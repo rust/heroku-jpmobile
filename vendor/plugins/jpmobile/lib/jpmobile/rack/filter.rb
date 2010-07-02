@@ -30,15 +30,15 @@ module Jpmobile
 
           if content_type and charset
             if response.respond_to?(:content_type=)
-              response.content_type    = "#{content_type}; charset=#{charset}"
+              # response.content_type    = "#{content_type}; charset=#{charset}"
             else
-              response['Content-Type'] = "#{content_type}; charset=#{charset}"
+              # response['Content-Type'] = "#{content_type}; charset=#{charset}"
             end
           end
 
           body = [body] if body.kind_of?(String)
 
-          response.body   = body
+          # response.body   = body
           # response.length = body.length
         end
 
