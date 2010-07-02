@@ -12,7 +12,7 @@ module Jpmobile
         if env['rack.jpmobile']
           # フォームのパラメータ
           if env['REQUEST_METHOD'] == 'POST'
-puts env['rack.jpmobile'].class
+puts URI.decode(env['rack.input'].read).unpack("H*")
             form_params = env['rack.jpmobile'].to_internal(URI.decode(env['rack.input'].read))
             env['rack.input'] = StringIO.new(URI.encode(form_params))
           end
