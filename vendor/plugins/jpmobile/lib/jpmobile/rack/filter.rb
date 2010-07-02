@@ -38,8 +38,8 @@ module Jpmobile
 
           # body = [body] if body.kind_of?(String)
 
-          # response.body   = body
-          # response.length = body.length
+          response.body   = body
+          response.length = body.length
         end
 
         response.finish
