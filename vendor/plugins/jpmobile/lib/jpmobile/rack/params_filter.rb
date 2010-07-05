@@ -38,17 +38,11 @@ module Rack
       if @env["rack.input"].nil?
         raise "Missing rack.input"
       elsif @env["rack.request.form_input"].eql? @env["rack.input"]
-puts "return rack.request.from_hash"
-puts @env["rack.request.form_hash"]
         @env["rack.request.form_hash"]
       elsif form_data? || parseable_data?
         @env["rack.request.form_input"] = @env["rack.input"]
         unless @env["rack.request.form_hash"] = parse_multipart(env)
           form_vars = @env["rack.input"].read
-puts "from rack.input"
-str = ""
-form_vars.each_byte{|s| str << "%x " % s}
-puts str
 
           # Fix for Safari Ajax postings that always append \0
           form_vars.sub!(/\0\z/, '')
@@ -58,6 +52,8 @@ puts str
 
           @env["rack.input"].rewind
         end
+require 'pp'
+pp        @env["rack.request.form_hash"]
         @env["rack.request.form_hash"]
       else
         {}
