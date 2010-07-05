@@ -12,7 +12,6 @@ module Jpmobile
         if env['rack.jpmobile']
           # フォームのパラメータ
           if env['REQUEST_METHOD'] == 'POST'
-puts "jpmobile - filter"
             form_params = env['rack.jpmobile'].to_internal(URI.decode(env['rack.input'].read))
             env['rack.input'] = StringIO.new(URI.encode(form_params))
           end
@@ -32,34 +31,17 @@ puts "jpmobile - filter"
   end
 end
 
-module Rack
-  class Request
-    def POST
-      if @env["rack.input"].nil?
-        raise "Missing rack.input"
-      elsif @env["rack.request.form_input"].eql? @env["rack.input"]
-        @env["rack.request.form_hash"]
-      elsif form_data? || parseable_data?
-        @env["rack.request.form_input"] = @env["rack.input"]
-        unless @env["rack.request.form_hash"] = parse_multipart(env)
-          form_vars = @env["rack.input"].read
-
-          # Fix for Safari Ajax postings that always append \0
-          form_vars.sub!(/\0\z/, '')
-
-          @env["rack.request.form_vars"] = form_vars
-          @env["rack.request.form_hash"] = parse_query(form_vars)
-
-          @env["rack.input"].rewind
-        end
-comment = @env["rack.request.form_hash"]["guestbook"]["comment"]
-str = ""
-comment.each_byte{|s| str << "%x " % s}
-puts str
-
-        @env["rack.request.form_hash"]
-      else
-        {}
+module ActionDispatch
+  module Http
+    module Parameters
+      def parameters
+requrie 'pp'
+pp "--------------"
+pp request_parameters
+pp query_parameters
+pp path_parameters
+pp "--------------"
+        @env["action_dispatch.request.parameters"] ||= request_parameters.merge(query_parameters).update(path_parameters).with_indifferent_access
       end
     end
   end
