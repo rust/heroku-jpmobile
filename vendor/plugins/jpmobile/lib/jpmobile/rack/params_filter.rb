@@ -30,3 +30,33 @@ module Jpmobile
     end
   end
 end
+
+module Rack
+  class Request
+    def POST
+      if @env["rack.input"].nil?
+        raise "Missing rack.input"
+      elsif @env["rack.request.form_input"].eql? @env["rack.input"]
+puts "rack.request.form_hash"
+        @env["rack.request.form_hash"]
+      elsif form_data? || parseable_data?
+puts "parse input"
+        @env["rack.request.form_input"] = @env["rack.input"]
+        unless @env["rack.request.form_hash"] = parse_multipart(env)
+          form_vars = @env["rack.input"].read
+
+          # Fix for Safari Ajax postings that always append \0
+          form_vars.sub!(/\0\z/, '')
+
+          @env["rack.request.form_vars"] = form_vars
+          @env["rack.request.form_hash"] = parse_query(form_vars)
+
+          @env["rack.input"].rewind
+        end
+        @env["rack.request.form_hash"]
+      else
+        {}
+      end
+    end
+  end
+end
