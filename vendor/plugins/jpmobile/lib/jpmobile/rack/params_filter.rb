@@ -12,6 +12,7 @@ module Jpmobile
         if env['rack.jpmobile']
           # フォームのパラメータ
           if env['REQUEST_METHOD'] == 'POST'
+puts "jpmobile - filter"
             form_params = env['rack.jpmobile'].to_internal(URI.decode(env['rack.input'].read))
             env['rack.input'] = StringIO.new(URI.encode(form_params))
           end
@@ -37,13 +38,15 @@ module Rack
       if @env["rack.input"].nil?
         raise "Missing rack.input"
       elsif @env["rack.request.form_input"].eql? @env["rack.input"]
-puts "rack.request.form_hash"
+puts @env["rack.request.form_hash"]
         @env["rack.request.form_hash"]
       elsif form_data? || parseable_data?
-puts "parse input"
         @env["rack.request.form_input"] = @env["rack.input"]
         unless @env["rack.request.form_hash"] = parse_multipart(env)
           form_vars = @env["rack.input"].read
+str = ""
+form_vars.each_byte{|s| str << "%x " % s}
+puts str
 
           # Fix for Safari Ajax postings that always append \0
           form_vars.sub!(/\0\z/, '')
