@@ -52,8 +52,11 @@ module Rack
 
           @env["rack.input"].rewind
         end
-require 'pp'
-pp        @env["rack.request.form_hash"]
+comment = @env["rack.request.form_hash"]["guestbook"]["comment"]
+str = ""
+comment.each_byte{|s| str << "%x " % s}
+puts str
+
         @env["rack.request.form_hash"]
       else
         {}
