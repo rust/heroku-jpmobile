@@ -1,8 +1,13 @@
 --- 
-hash: 7b66c172a766e4cd554fbe591c42e51925929140
-sources: 
-- Rubygems: 
-    uri: http://rubygems.org
+dependencies: 
+  pg: 
+    group: 
+    - :default
+    version: ">= 0"
+  rails: 
+    group: 
+    - :default
+    version: = 3.0.0.beta4
 specs: 
 - rake: 
     version: 0.8.7
@@ -54,21 +59,7 @@ specs:
     version: 3.0.0.beta4
 - rails: 
     version: 3.0.0.beta4
-- ruby-mysql: 
-    version: 2.9.3
-dependencies: 
-  rails: 
-    version: = 3.0.0.beta4
-    group: 
-    - :default
-  pg: 
-    version: ">= 0"
-    group: 
-    - :production
-  ruby-mysql: 
-    version: ">= 0"
-    group: 
-    - :test
-    - :development
-    require: 
-    - mysql
+hash: 899136369f028c1eae02226e4ea45225932e7b33
+sources: 
+- Rubygems: 
+    uri: http://rubygems.org
