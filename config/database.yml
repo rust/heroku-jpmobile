@@ -7,7 +7,7 @@ development:
   password: jpmobile
   host: 127.0.0.1
   port: 5432
-  encoding: unicode
+  encoding: utf8
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,7 +19,7 @@ test:
   password: jpmobile
   host: 127.0.0.1
   port: 5432
-  encoding: unicode
+  encoding: utf8
 
 production:
   adapter: postgresql
@@ -28,4 +28,4 @@ production:
   password: f5lxx1zz5pnorynqglhzmsp34
   host: ec2-184-72-250-170.compute-1.amazonaws.com
   port: 5432
-  encoding: unicode
+  encoding: utf8
