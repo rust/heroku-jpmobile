@@ -30,17 +30,3 @@ module Jpmobile
     end
   end
 end
-
-module ActionDispatch
-  class Reqeust
-    def parameters
-requrie 'pp'
-pp "--------------"
-pp request_parameters
-pp query_parameters
-pp path_parameters
-pp "--------------"
-      @env["action_dispatch.request.parameters"] ||= request_parameters.merge(query_parameters).update(path_parameters).with_indifferent_access
-    end
-  end
-end
