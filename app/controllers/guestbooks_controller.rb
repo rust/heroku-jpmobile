@@ -44,6 +44,10 @@ class GuestbooksController < ApplicationController
   # POST /guestbooks
   # POST /guestbooks.xml
   def create
+require 'pp'
+str = ""
+params[:guestbook][:comment].each_byte{|s| str << "%x " % s }
+pp str
     @guestbook = Guestbook.new(params[:guestbook])
 
     respond_to do |format|
