@@ -44,10 +44,6 @@ class GuestbooksController < ApplicationController
   # POST /guestbooks
   # POST /guestbooks.xml
   def create
-require 'pp'
-str = ""
-params[:guestbook][:comment].each_byte{|s| str << "%x " % s }
-pp str
     @guestbook = Guestbook.new(params[:guestbook])
 
     respond_to do |format|
@@ -87,16 +83,5 @@ pp str
       format.html { redirect_to(guestbooks_url) }
       format.xml  { head :ok }
     end
-  end
-end
-module ActionDispatch::Http::Parameters
-  def parameters
-requrie 'pp'
-pp "--------------"
-pp request_parameters
-pp query_parameters
-pp path_parameters
-pp "--------------"
-    @env["action_dispatch.request.parameters"] ||= request_parameters.merge(query_parameters).update(path_parameters).with_indifferent_access
   end
 end
