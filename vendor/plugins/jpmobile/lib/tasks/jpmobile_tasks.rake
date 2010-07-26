@@ -82,6 +82,7 @@ END
       cd rails_root
       ruby "-S rake db:migrate test"
       ruby "-S rake spec"
+      # ruby "-S rspec -e 'TemplatePathController integrated_views index DoCoMoからのアクセスの場合 show.html.erb がなくとも show_mobile_docomo.html.erbが使用されること' spec/requests/template_path_spec.rb"
 
       cd relative_root
     end

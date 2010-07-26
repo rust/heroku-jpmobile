@@ -52,6 +52,11 @@ module Jpmobile::Mobile
       return false
     end
 
+    # smartphone かどうか
+    def smart_phone?
+      false
+    end
+
     # エンコーディング変換用
     def to_internal(str)
       str
@@ -61,6 +66,11 @@ module Jpmobile::Mobile
     end
     def default_charset
       "UTF-8"
+    end
+    # リクエストがこのクラスに属するか調べる
+    # メソッド名に関して非常に不安
+    def self.check_carrier(env)
+      self::USER_AGENT_REGEXP && env['HTTP_USER_AGENT'] =~ self::USER_AGENT_REGEXP
     end
 
     #XXX: lib/jpmobile.rbのautoloadで先に各キャリアの定数を定義しているから動くのです
