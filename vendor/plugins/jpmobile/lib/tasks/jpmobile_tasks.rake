@@ -39,7 +39,7 @@ namespace :test do
   task :rails, [:versions] do |t, args|
     rails_root     = "test/rails/rails_root"
     relative_root  = "../../../"
-    rails_versions = args.versions.split("/") rescue ["3.0.0.beta4"]
+    rails_versions = args.versions.split("/") rescue ["3.0.0.rc"]
 
     puts "Running tests in Rails #{rails_versions.join(', ')}"
 
@@ -62,13 +62,6 @@ namespace :test do
         FileUtils.cp_r(file, rails_root)
       end
 
-      # for 2.3.2
-      if rails_version == "2.3.2"
-        FileList["test/rails/2.3.2/*"].each do |file|
-          FileUtils.cp_r(file, rails_root)
-        end
-      end
-
       # for cookie_only option
       config_path = File.join(rails_root, 'config', 'initializers', 'session_store.rb')
       File.open(config_path, 'w') do |file|
@@ -80,9 +73,10 @@ END
 
       # run tests in rails
       cd rails_root
+      # ruby "-S bundle install"
       ruby "-S rake db:migrate test"
       ruby "-S rake spec"
-      # ruby "-S rspec -e 'TemplatePathController integrated_views index DoCoMoからのアクセスの場合 show.html.erb がなくとも show_mobile_docomo.html.erbが使用されること' spec/requests/template_path_spec.rb"
+      # ruby "-S rspec -b --color spec/requests/trans_sid_spec.rb"
 
       cd relative_root
     end
